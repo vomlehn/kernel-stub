@@ -85,7 +85,7 @@ static void uart_wait_for_transmitter_ready(struct UARTpl011 self)
 	uartfr = (uint32_t *)(self.dev + UARTFR);
 	do {
 		val = read_volatile(uartfr);
-	} while ((val & UARTFR_RXFE) != 0);
+	} while ((val & UARTFR_TXFF) != 0);
 }
 
 uint8_t uart_getchar(struct UARTpl011 self)
