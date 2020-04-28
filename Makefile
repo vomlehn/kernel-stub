@@ -3,8 +3,11 @@ CC :=	$(CROSS)gcc
 LD :=	$(CROSS)ld
 
 CFLAGS +=	-Wall -Wextra -Werror -Wno-unused-parameter
+CFLAGS +=	-g -ggdb
+
 LDFLAGS +=	-static
 LDFLAGS +=	-Tarch.lds -nostdlib
+LDFLAGS +=	-g -ggdb
 
 all:	stub
 
@@ -12,9 +15,11 @@ crt0.o:	crt0.S
 
 main.o: main.c
 
-stub: crt0.o main.o
+uart_pl011.o: uart_pl011.c
+
+stub: crt0.o uart_pl011.o main.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
-	rm -f crt0.o main.o
+	rm -f crt0.o uart_pl011.o main.o
 	rm -f stub
