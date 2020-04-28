@@ -31,8 +31,12 @@ _main:
 0:	b	0b
 
 // See:
+//
 // 	stackoverflow.com/questions/31990487/how-to-cleanly-exit-qemu-after-executing-bare-metal-program-without-user-interve
+//
 // which also has references to the corresponding ARM code.
+// This requires that the kernel be run with semihosting. For QEMU, this
+// means supplying the -semihosting flag.
 	.global	my_exit
 my_exit:
 	/* 0x20026 == ADP_Stopped_ApplicationExit */
