@@ -2,6 +2,8 @@ CROSS :=	aarch64-linux-gnu-
 CC :=	$(CROSS)gcc
 LD :=	$(CROSS)ld
 
+ASFLAGS :=	-g -ggdb
+
 CFLAGS +=	-Wall -Wextra -Werror -Wno-unused-parameter
 CFLAGS +=	-g -ggdb
 
